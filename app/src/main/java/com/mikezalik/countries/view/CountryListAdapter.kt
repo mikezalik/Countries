@@ -7,7 +7,7 @@ import com.mikezalik.countries.model.Country
 
 class CountryListAdapter(var countries:ArrayList<Country>): RecyclerView.Adapter<CountryListAdapter.CountryViewHolder>() {
     class CountryViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        fun bing(country: Country) {
+        fun bind(country: Country) {
 
         }
     }
@@ -16,11 +16,9 @@ class CountryListAdapter(var countries:ArrayList<Country>): RecyclerView.Adapter
         TODO("Not yet implemented")
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount() = countries.size
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(countries[position])
     }
 }

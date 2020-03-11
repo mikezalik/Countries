@@ -1,7 +1,8 @@
-package com.mikezalik.countries
+package com.mikezalik.countries.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.mikezalik.countries.R
 
 class MainActivity : AppCompatActivity() {
 

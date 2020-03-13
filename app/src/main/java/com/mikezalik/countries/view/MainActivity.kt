@@ -2,6 +2,7 @@ package com.mikezalik.countries.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity() {
 
             fun observeViewModel() {
                 viewModel.countries.observe(this, Observer{countries: List <Country>? -> countries?.let { countriesAdapter.updateCountries(it)}})
+
+                viewModel.countryLoadError.observe(this, Observer { isError -> isError?.let {list_error.visibility = if(it) View.VISIBLE else View.GONE}})
             }
         }
     }

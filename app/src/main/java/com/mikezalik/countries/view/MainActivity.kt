@@ -2,9 +2,11 @@ package com.mikezalik.countries.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mikezalik.countries.R
+import com.mikezalik.countries.model.Country
 import com.mikezalik.countries.viewmodel.ListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -23,6 +25,11 @@ class MainActivity : AppCompatActivity() {
         countriesList.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = countriesAdapter
+            observeViewModel()
+
+            fun observeViewModel() {
+                viewModel.countries.observe(this, Observer{countries: List <Country>? -> countries?.let { countriesAdapter.updateCountries(it)}})
+            }
         }
     }
 }

@@ -26,13 +26,19 @@ class MainActivity : AppCompatActivity() {
         countriesList.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = countriesAdapter
-            observeViewModel()
-
-            fun observeViewModel() {
-                viewModel.countries.observe(this, Observer{countries: List <Country>? -> countries?.let { countriesAdapter.updateCountries(it)}})
-
-                viewModel.countryLoadError.observe(this, Observer { isError -> isError?.let {list_error.visibility = if(it) View.VISIBLE else View.GONE}})
-            }
         }
+
+        observeViewModel()
     }
+           private fun observeViewModel() {
+                viewModel.countries.observe(this, Observer{countries: List <Country>? ->
+                    countries?.let { countriesAdapter.updateCountries(it)}})
+
+                viewModel.countryLoadError.observe(this, Observer { isError ->
+                    isError?.let {list_error.visibility = if(it) View.VISIBLE else View.GONE}})
+
+                viewModel.loading.observe(this, Observer { isLoading ->
+                    isLoading?.let {loading_view.visibility = if(it) View.VISIBLE else View.GONE}})
+            }
 }
+

@@ -30,19 +30,29 @@ class MainActivity : AppCompatActivity() {
 
         observeViewModel()
     }
+
     private fun observeViewModel() {
-        viewModel.countries.observe(this, Observer{countries: List <Country>? ->
-            countries?.let { countriesAdapter.updateCountries(it)}})
+        viewModel.countries.observe(this, Observer { countries: List<Country>? ->
+            countries?.let {
+                countriesList.visibility = View.VISIBLE
+                countriesAdapter.updateCountries(it)
+            }
+        })
+
 
         viewModel.countryLoadError.observe(this, Observer { isError ->
-            isError?.let {list_error.visibility = if(it) View.VISIBLE else View.GONE}})
+            isError?.let { list_error.visibility = if (it) View.VISIBLE else View.GONE }
+        })
 
         viewModel.loading.observe(this, Observer { isLoading ->
-            isLoading?.let {loading_view.visibility = if(it) View.VISIBLE else View.GONE
-                if(it) {
+            isLoading?.let {
+                loading_view.visibility = if (it) View.VISIBLE else View.GONE
+                if (it) {
                     list_error.visibility = View.GONE
                     countriesList.visibility = View.GONE
-        } }})
+                }
+            }
+        })
     }
 }
 

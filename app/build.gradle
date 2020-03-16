@@ -35,7 +35,7 @@ def retroFitVersion = '2.3.0'
 def daggerVersion = '2.13'
 def glideVersion = '4.8.0'
 def mockitoVersion = '2.11.0'
-def rxJavaVersion = '3.0.0'
+def rxJavaVersion = '2.0.0'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -48,8 +48,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retroFitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retroFitVersion"
 
-    implementation "io.reactivex.rxjava3:rxjava:$rxJavaVersion"
-    implementation "io.reactivex.rxjava3:rxandroid:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
 
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
@@ -62,7 +62,6 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glideVersion"
 
     implementation "android.arch.lifecycle:extensions:$lifeCycleExtensionsVersion"
-
 
     testImplementation 'junit:junit:4.12'
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"

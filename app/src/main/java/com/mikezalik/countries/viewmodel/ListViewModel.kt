@@ -2,16 +2,23 @@ package com.mikezalik.countries.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.mikezalik.countries.di.DaggerApiComponent
 import com.mikezalik.countries.model.CountriesService
 import com.mikezalik.countries.model.Country
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class ListViewModel : ViewModel() {
 
-    private val countriesService = CountriesService()
+    @Inject
+    lateinit var countriesService: CountriesService
+
+    init {
+        DaggerApiComponent.create().inject(this)
+    }
     private val disposable = CompositeDisposable()
 
     val countries = MutableLiveData<List<Country>>()

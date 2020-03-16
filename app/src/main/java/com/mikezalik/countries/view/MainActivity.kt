@@ -27,10 +27,11 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context)
             adapter = countriesAdapter
         }
-    swipeRefreshLayout.setOnRefreshListener {
-        swipeRefreshLayout.isRefreshing = false
-        viewModel.refresh()
-    }
+
+        swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = false
+            viewModel.refresh()
+        }
         observeViewModel()
     }
 
@@ -41,7 +42,6 @@ class MainActivity : AppCompatActivity() {
                 countriesAdapter.updateCountries(it)
             }
         })
-
 
         viewModel.countryLoadError.observe(this, Observer { isError ->
             isError?.let { list_error.visibility = if (it) View.VISIBLE else View.GONE }
